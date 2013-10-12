@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "12345678901",
             "狂拽酷炫吊炸天空穴来风卷"}, -1);
             this.listOnline = new System.Windows.Forms.ListView();
@@ -38,8 +38,8 @@
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonRefresh = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +53,7 @@
             this.listOnline.GridLines = true;
             this.listOnline.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listOnline.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
+            listViewItem1});
             this.listOnline.Location = new System.Drawing.Point(6, 20);
             this.listOnline.Name = "listOnline";
             this.listOnline.ShowGroups = false;
@@ -78,6 +78,7 @@
             this.listPush.ItemHeight = 12;
             this.listPush.Location = new System.Drawing.Point(18, 20);
             this.listPush.Name = "listPush";
+            this.listPush.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listPush.Size = new System.Drawing.Size(121, 124);
             this.listPush.TabIndex = 1;
             // 
@@ -113,6 +114,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "在线QQ列表";
             // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Location = new System.Drawing.Point(6, 148);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(75, 28);
+            this.buttonRefresh.TabIndex = 3;
+            this.buttonRefresh.Text = "刷新";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.button1_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.listPush);
@@ -123,16 +134,6 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "推送QQ列表";
-            // 
-            // buttonRefresh
-            // 
-            this.buttonRefresh.Location = new System.Drawing.Point(6, 148);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(75, 28);
-            this.buttonRefresh.TabIndex = 3;
-            this.buttonRefresh.Text = "刷新";
-            this.buttonRefresh.UseVisualStyleBackColor = true;
-            this.buttonRefresh.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 

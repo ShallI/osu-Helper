@@ -14,6 +14,9 @@ namespace OSUHelperApp
         NotifyIcon notify;
         OSUHelper helper;
         QQStatus status;
+        MenuItem mItemStart;
+        MenuItem mItemStop;
+        ContextMenu contextMenu;
         public Form1()
         {
             InitializeComponent();
@@ -21,8 +24,17 @@ namespace OSUHelperApp
             notify = new NotifyIcon(this.components);
             notify.Visible = true;
             notify.Icon = this.Icon;
+
             notify.MouseUp += new MouseEventHandler(notify_MouseUp);
             notify.MouseDoubleClick += new MouseEventHandler(notify_MouseDoubleClick);
+
+            contextMenu = new ContextMenu();
+            mItemStart= new MenuItem("开始推送");
+            mItemStop = new MenuItem("停止推送");
+            contextMenu.MenuItems.Add(mItemStart);
+            contextMenu.MenuItems.Add(mItemStop);
+
+            notify.ContextMenu = contextMenu;
         }
 
         void notify_MouseUp(object sender, MouseEventArgs e)
@@ -33,7 +45,7 @@ namespace OSUHelperApp
             }
             else
             {
-
+                
             }
         }
 
