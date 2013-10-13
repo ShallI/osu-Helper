@@ -40,6 +40,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +77,8 @@
             // 
             this.listPush.FormattingEnabled = true;
             this.listPush.ItemHeight = 12;
+            this.listPush.Items.AddRange(new object[] {
+            "12345678901"});
             this.listPush.Location = new System.Drawing.Point(18, 20);
             this.listPush.Name = "listPush";
             this.listPush.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -135,11 +138,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "推送QQ列表";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(91, 245);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(294, 21);
+            this.textBox1.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(506, 325);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -150,6 +161,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -164,6 +176,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.TextBox textBox1;
 
 
     }

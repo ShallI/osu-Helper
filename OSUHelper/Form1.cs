@@ -17,6 +17,7 @@ namespace OSUHelperApp
         MenuItem mItemStart;
         MenuItem mItemStop;
         ContextMenu contextMenu;
+        CustomClassWindow customWindow;
         public Form1()
         {
             InitializeComponent();
@@ -43,10 +44,6 @@ namespace OSUHelperApp
             {
                 this.Visible = !this.Visible;
             }
-            else
-            {
-                
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -57,6 +54,14 @@ namespace OSUHelperApp
             helper.QQListGet += new QQListGetEventHandler(helper_QQListGet);
             helper.RequestOnlineQQList();
             status = new QQStatus();
+
+            customWindow = new CustomClassWindow("MsnMsgrUIManager");
+            customWindow.OnPush += new CustomClassWindow.OnPushEventHandler(customWindow_OnPush);
+        }
+
+        void customWindow_OnPush(object sender, string data)
+        {
+            textBox1.Text = data;
         }
 
         void helper_QQListGet(object sender, Dictionary<int, string> e)
@@ -70,7 +75,7 @@ namespace OSUHelperApp
 
         void notify_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -89,7 +94,7 @@ namespace OSUHelperApp
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            foreach (object item in listPush.Items) listPush.Items.Remove(item);
+            while (listPush.SelectedItems.Count > 0) listPush.Items.Remove(listPush.SelectedItem);   
         }
     }
 }

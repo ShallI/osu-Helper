@@ -32,8 +32,11 @@ namespace OSUHelperLib
                 HtmlElement element = doc.GetElementById("list_uin");
                 for (int i = 0; i < element.Children.Count; i++)
                 {
-                    string[] ss = element.Children[i].InnerText.Split(" ()".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                    dic.Add(int.Parse(ss[1]), ss[0]);
+                    string strTarget=element.Children[i].InnerText;
+                    int spaceCharIndex = strTarget.LastIndexOf(' ');
+                    string strNickname = strTarget.Substring(0, spaceCharIndex);
+                    string strUin = strTarget.Substring(spaceCharIndex + 2, strTarget.Length-spaceCharIndex-3);
+                    dic.Add(int.Parse(strUin), strNickname);
                 }
                 if (QQListGet != null) QQListGet(this, dic);
             }
