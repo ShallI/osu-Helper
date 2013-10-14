@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Diagnostics;
 namespace OSUHelperLib
 {
     public delegate void QQListGetEventHandler(object sender, Dictionary<int, string> e);
@@ -40,6 +43,20 @@ namespace OSUHelperLib
                 }
                 if (QQListGet != null) QQListGet(this, dic);
             }
+        }
+        [DllImport("user32.dll")]
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+        [DllImport("user32.dll", EntryPoint = "GetWindowText")]
+        public static extern int GetWindowText(int hwnd, string lpString, int cch);
+
+        public string GetOsuTitleInfo()
+        {
+            Process[] ps = Process.GetProcessesByName("osu!"); 
+            foreach (Process p in ps)
+            {
+                if (p.MainWindowTitle.StartsWith("osu!")) return p.MainWindowTitle;
+            }
+            return null;
         }
     }
 }
