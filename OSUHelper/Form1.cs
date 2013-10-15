@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.IO;
@@ -45,10 +42,11 @@ namespace OSUHelperApp
 
             notify.MouseDoubleClick += new MouseEventHandler(notify_MouseDoubleClick);
 
+            contextMenu = new ContextMenu();
+
             mItemShowHide = new MenuItem("显示/隐藏");
             mItemShowHide.Click += new EventHandler(mItemShowHide_Click);
-            notify.ContextMenu = contextMenu;
-            contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add(mItemShowHide);
             mItemStart= new MenuItem("开始推送");
             mItemStart.Click += new EventHandler(mItemStart_Click);
             contextMenu.MenuItems.Add(mItemStart);
@@ -59,6 +57,7 @@ namespace OSUHelperApp
             mItemQuit.Click += new EventHandler(mItemQuit_Click);
             contextMenu.MenuItems.Add(mItemQuit);
 
+            notify.ContextMenu = contextMenu;
 
             status = new QQStatus();
             config = new Config();
@@ -76,6 +75,7 @@ namespace OSUHelperApp
             delayTimer = new Timer();
             delayTimer.Interval = 200;
             delayTimer.Tick += new EventHandler(delayTimer_Tick);
+
         }
 
 
@@ -88,10 +88,15 @@ namespace OSUHelperApp
         void timer_Tick(object sender, EventArgs e)
         {
             string title = helper.GetOsuTitleInfo();
-            if (title == null) return;
+            if (title == null)
+            {
+                //其他播放器消息
+                Push(); 
+                return;
+            }
             
             if (title == "osu!")
-            {
+            { 
                 if (tempTitle == title) return;
                 title = textBoxPush.Text;
             }
@@ -224,14 +229,10 @@ namespace OSUHelperApp
             {
                 listPush.Items.Add(i);
             }
-
-            helper =new OSUHelper();
-            helper.QQListGet += new QQListGetEventHandler(helper_QQListGet);
             helper.RequestOnlineQQList();
-
-            customWindow = new CustomClassWindow("MsnMsgrUIManager");
-            customWindow.OnPush += new CustomClassWindow.OnPushEventHandler(customWindow_OnPush);
             timer.Start();
+
+            this.Hide();
         }
         void customWindow_OnPush(object sender, string data)
         {
@@ -331,6 +332,11 @@ namespace OSUHelperApp
         private void buttonMAdd_Click(object sender, EventArgs e)
         {
             AddToPushList(textBoxQQ.Text);
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized) this.Hide();
         }
     }
 }

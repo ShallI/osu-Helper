@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "12345678901",
             "狂拽酷炫吊炸天空穴来风卷"}, -1);
             this.listOnline = new System.Windows.Forms.ListView();
@@ -63,7 +63,7 @@
             this.listOnline.GridLines = true;
             this.listOnline.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listOnline.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4});
+            listViewItem1});
             this.listOnline.Location = new System.Drawing.Point(6, 20);
             this.listOnline.Name = "listOnline";
             this.listOnline.ShowGroups = false;
@@ -255,8 +255,10 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OSU!Helper";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
