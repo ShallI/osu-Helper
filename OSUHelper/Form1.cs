@@ -139,6 +139,13 @@ namespace OSUHelperApp
                 foreach (object item in listPush.Items)
                 {
                     uin = int.Parse(item.ToString());
+                    if (msg != "")
+                    {
+                        if (msg.StartsWith("osu! "))
+                            msg = msg.Replace("osu! ", "[osu!] Playing");
+                        else
+                            msg = "[osu!]" + msg;
+                    }
                     status.PushMusic(uin, msg,msg);
                 }
             }
