@@ -134,18 +134,18 @@ namespace OSUHelperApp
         {
             if (!config.IsRunning) return;
             int uin;
+            if (msg != "")
+            {
+                if (msg.StartsWith("osu! "))
+                    msg = msg.Replace("osu! ", "[osu!] Playing");
+                else
+                    msg = "[osu!] " + msg;
+            }
             try
             {
                 foreach (object item in listPush.Items)
                 {
                     uin = int.Parse(item.ToString());
-                    if (msg != "")
-                    {
-                        if (msg.StartsWith("osu! "))
-                            msg = msg.Replace("osu! ", "[osu!] Playing");
-                        else
-                            msg = "[osu!]" + msg;
-                    }
                     status.PushMusic(uin, msg,msg);
                 }
             }
@@ -205,7 +205,16 @@ namespace OSUHelperApp
         }
         void notify_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.Visible = !this.Visible;
+            if (this.Visible != true)
+            {
+                this.Visible = true;
+                this.Activate();
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         void mItemShowHide_Click(object sender, EventArgs e)
@@ -224,7 +233,14 @@ namespace OSUHelperApp
 
         void mItemQuit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Push("");
+            config.QQList.Clear();
+            foreach (object item in listPush.Items)
+            {
+                config.QQList.Add(item);
+            }
+            SaveConfig();
+            Environment.Exit(0);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -310,13 +326,8 @@ namespace OSUHelperApp
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Push("");
-            config.QQList.Clear();
-            foreach (object item in listPush.Items)
-            {
-                config.QQList.Add(item);
-            }
-            SaveConfig();
+            e.Cancel = true;
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void buttonRun_Click(object sender, EventArgs e)
